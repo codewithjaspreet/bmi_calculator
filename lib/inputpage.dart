@@ -1,4 +1,8 @@
+import 'package:bmi_calculator/reusecard.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'iconcontent.dart';
 
 const bottomContainerHeight = 80.0;
 const activeCardColour = Color(0xFF1D1E33);
@@ -22,32 +26,53 @@ class _InputPageState extends State<InputPage> {
           children: <Widget>[
             Expanded(
                 child: Row(
-              children: const <Widget>[
+              children: <Widget>[
                 Expanded(
                     child: ReusableCard(
                   colour: activeCardColour,
+                  cardChild: IconReuse(
+                    icon: FontAwesomeIcons.mars,
+                    label: 'MALE',
+                  ),
                 )),
                 Expanded(
                     child: ReusableCard(
+                  cardChild: IconReuse(
+                    icon: FontAwesomeIcons.venus,
+                    label: 'FEMALE',
+                  ),
                   colour: activeCardColour,
                 )),
               ],
             )),
-            const Expanded(
+            Expanded(
                 child: ReusableCard(
+              cardChild: IconReuse(
+                icon: FontAwesomeIcons.venus,
+                label: 'FEMALE',
+              ),
               colour: activeCardColour,
             )),
             Expanded(
                 child: Row(
-              children: const <Widget>[
+              children: <Widget>[
                 Expanded(
                     child: ReusableCard(
                   colour: activeCardColour,
+                  cardChild: IconReuse(
+                    label: 'asdas',
+                    icon: FontAwesomeIcons.r,
+                  ),
                 )),
                 Expanded(
-                    child: ReusableCard(
-                  colour: activeCardColour,
-                )),
+                  child: ReusableCard(
+                    colour: activeCardColour,
+                    cardChild: IconReuse(
+                      label: 'ASDG',
+                      icon: FontAwesomeIcons.addressBook,
+                    ),
+                  ),
+                )
               ],
             )),
             Container(
@@ -58,20 +83,5 @@ class _InputPageState extends State<InputPage> {
             )
           ],
         ));
-  }
-}
-
-class ReusableCard extends StatelessWidget {
-  const ReusableCard({required this.colour});
-  final Color colour;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(15),
-      decoration: BoxDecoration(
-        color: colour,
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-    );
   }
 }

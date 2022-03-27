@@ -21,6 +21,7 @@ class _InputPageState extends State<InputPage> {
   Color femaleCardColor = kInactiveCardColour;
   late Gender selectedGender = Gender.male;
   int height = 180;
+  int weight = 60;
 
   @override
   Widget build(BuildContext context) {
@@ -92,17 +93,27 @@ class _InputPageState extends State<InputPage> {
                         ),
                       ],
                     ),
-                    Slider(
-                      value: height.toDouble(),
-                      onChanged: (double newValue) {
-                        setState(() {
-                          height = newValue.round();
-                        });
-                      },
-                      min: 120.0,
-                      max: 220.0,
-                      activeColor: Color(0xFFEB1555),
-                      inactiveColor: Color(0xFF8D898),
+                    SliderTheme(
+                      data: SliderTheme.of(context).copyWith(
+                        inactiveTrackColor: Color(0xFF8D8E98),
+                        activeTrackColor: Colors.white,
+                        thumbShape:
+                            RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                        overlayShape:
+                            RoundSliderOverlayShape(overlayRadius: 30.0),
+                        thumbColor: Color(0xFFEB1555),
+                        overlayColor: Color(0x29EB1555),
+                      ),
+                      child: Slider(
+                        value: height.toDouble(),
+                        onChanged: (double newValue) {
+                          setState(() {
+                            height = newValue.round();
+                          });
+                        },
+                        min: 120.0,
+                        max: 220.0,
+                      ),
                     )
                   ],
                 ),
@@ -114,9 +125,28 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                     child: ReusableCard(
                   colour: kActiveCardColour,
-                  cardChild: IconReuse(
-                    label: 'asdas',
-                    icon: FontAwesomeIcons.r,
+                  cardChild: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        'WEIGHT',
+                        style: kLabelTextStyle,
+                      ),
+                      Text(
+                        weight.toString(),
+                        style: kMiddleTextStyle,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          RoundIconButton(icon: FontAwesomeIcons.plus),
+                          SizedBox(
+                            width: 10.0,
+                          ),
+                          RoundIconButton(icon: FontAwesomeIcons.minus),
+                        ],
+                      )
+                    ],
                   ),
                   onPress: () {},
                 )),
@@ -140,5 +170,24 @@ class _InputPageState extends State<InputPage> {
             )
           ],
         ));
+  }
+}
+
+class RoundIconButton extends StatelessWidget {
+  RoundIconButton({required this.icon});
+  final IconData icon;
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      elevation: 6.0,
+      child: Icon(icon),
+      constraints: BoxConstraints.tightFor(
+        width: 56.0,
+        height: 56.0,
+      ),
+      shape: CircleBorder(),
+      fillColor: Color(0xFF4C4F5E),
+      onPressed: () {},
+    );
   }
 }

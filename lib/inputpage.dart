@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/result.dart';
 import 'package:bmi_calculator/reusecard.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -27,7 +28,7 @@ class _InputPageState extends State<InputPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('BMI CALCULATOR'),
+          title: Center(child: const Text('BMI CALCULATOR')),
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -128,7 +129,7 @@ class _InputPageState extends State<InputPage> {
                   cardChild: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text(
+                      const Text(
                         'WEIGHT',
                         style: kLabelTextStyle,
                       ),
@@ -185,7 +186,7 @@ class _InputPageState extends State<InputPage> {
                                     age++;
                                   });
                                 }),
-                            SizedBox(
+                            const SizedBox(
                               width: 10.0,
                             ),
                             RoundIconButton(
@@ -204,11 +205,23 @@ class _InputPageState extends State<InputPage> {
                 )
               ],
             )),
-            Container(
-              color: kBottomContainerColor,
-              margin: const EdgeInsets.only(top: 10.0),
-              height: kBottomContainerHeight,
-              width: double.infinity,
+            GestureDetector(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ResultPage()));
+              },
+              child: Container(
+                child: Center(
+                    child: Text(
+                  'Calculate',
+                  style: kLargeButtonTextStyle,
+                )),
+                color: kBottomContainerColor,
+                margin: const EdgeInsets.only(top: 10.0),
+                padding: EdgeInsets.only(bottom: 20.0),
+                height: kBottomContainerHeight,
+                width: double.infinity,
+              ),
             )
           ],
         ));

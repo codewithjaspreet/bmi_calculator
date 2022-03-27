@@ -17,3 +17,15 @@ const kMiddleTextStyle = TextStyle(
   fontSize: 50.0,
   fontWeight: FontWeight.w900,
 );
+
+const kTitleTextStyle = TextStyle(fontSize: 50.0, fontWeight: FontWeight.bold);
+const RTitleTextStyle =
+    TextStyle(color: Color(0xFF24D876), fontWeight: FontWeight.bold);
+
+const kBmiTextStyle = TextStyle(
+  fontSize: 100.0,
+  fontWeight: FontWeight.bold,
+);
+const kBodyStyle = TextStyle(
+  fontSize: 22.0,
+);
